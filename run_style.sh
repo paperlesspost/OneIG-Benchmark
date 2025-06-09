@@ -7,7 +7,7 @@ start_time=$(date +%s)
 MODE=EN
 
 # image_root_dir
-IMAGE_DIR="s3://changjingjing/benchmark/v2"
+IMAGE_DIR=""
 
 # model list
 MODEL_NAMES=("doubao")
