@@ -122,7 +122,7 @@ The correspondence between the evaluation metrics and the evaluated image sets i
 
 - **Benchmark Comparison:**
 
-&nbsp;&nbsp;**OneIG-Bench** (also referred to as **OneIG-Bench-EN**) denotes the English benchmark set.
+&nbsp;&nbsp;&nbsp;&nbsp;**OneIG-Bench** (also referred to as **OneIG-Bench-EN**) denotes the English benchmark set.
 <p align="center">
     <img src="./assets/benchmark_comparison.png" width="86%">
 </p>
