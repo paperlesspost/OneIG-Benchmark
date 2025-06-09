@@ -102,10 +102,13 @@ The correspondence between the evaluation metrics and the evaluated image sets i
 
 - **📊 Metrics and Image Sets Correspondence**
 
+<div align="center">
+
 |                    |                  Alignment                  |    Text    | Reasoning |   Style   |                  Diversity                 |
 |--------------------|:-------------------------------------------:|:----------:|:---------:|:---------:|:------------------------------------------:|
 | **OneIG-Bench**         | **O**, **P**, **A**, **S**                   | **T**      | **KR**    | **S**     | **O**, **P**, **A**, **S**, **T**, **KR**   |
 | **OneIG-Bench-ZH**     | **O**<sub>zh</sub>, **P**<sub>zh</sub>, **A**<sub>zh</sub>, **S**<sub>zh</sub>, **L**<sub>zh</sub> | **T**<sub>zh</sub> | **KR**<sub>zh</sub> | **S**<sub>zh</sub> | **O**<sub>zh</sub>, **P**<sub>zh</sub>, **A**<sub>zh</sub>, **S**<sub>zh</sub>, **L**<sub>zh</sub>, **T**<sub>zh</sub>, **KR**<sub>zh</sub> |
+</div>
 
 - **Method Comparision on OneIG-Bench:**
 
