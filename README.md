@@ -1,13 +1,14 @@
 # OneIG-Bench
 ## OneIG-Bench: Omni-dimensional Nuanced Evaluation for Image Generation
 
+<br>  
+
 <div align="center">
  <a href="https://oneig-bench.github.io/"><img src="https://img.shields.io/static/v1?label=Project%20Page&message=Web&color=green"></a> &ensp;
  <a href="https://huggingface.co/datasets/OneIG-Bench/OneIG-Bench"><img src="https://img.shields.io/static/v1?label=Dataset&message=Huggingface&color=yellow"></a> &ensp;
   <a href="https://arxiv.org/abs/xxxx.xxxxx"><img src="https://img.shields.io/static/v1?label=Tech%20Report&message=Arxiv&color=red"></a> &ensp;
 </div>
 
-<br>  
 <br>  
 
 <p align="center">
