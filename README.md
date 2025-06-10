@@ -1,6 +1,48 @@
 # OneIG-Bench
 ## OneIG-Bench: Omni-dimensional Nuanced Evaluation for Image Generation
 
+<div class="is-size-4 publication-authors" align="center">
+   <span class="author-block">
+       <a href="https://scholar.google.com/citations?user=i1accPcAAAAJ&hl=en">Jingjing Chang</a><sup>1,2</sup>,
+   </span>
+   <span class="author-block">
+       <a href="https://scholar.google.com/citations?user=yDNIBE0AAAAJ&hl=en">Yixiao Fang</a><sup>2&dagger;</sup>,
+   </span>
+   <span class="author-block">
+       <a href="https://scholar.google.com/citations?user=k_jXsNYAAAAJ&hl=en">Peng Xing</a><sup>2</sup>,
+   </span>
+   <span class="author-block">
+     <a href="https://openreview.net/profile?id=~Shuhan_Wu3">Shuhan Wu</a><sup>2</sup>,
+   </span>
+<span class="author-block">
+       <a href="https://wchengad.github.io">Wei Cheng</a><sup>2</sup>,</span>
+   </span>
+</div>
+<div class="is-size-4 publication-authors" align="center">
+   <span class="author-block">
+     <a href="https://wrong.wang/">Rui Wang</a><sup>2</sup>,
+   </span>
+   <span class="author-block">
+     <a href="https://scholar.google.com/citations?user=tgDc0fsAAAAJ&hl=en">Xianfang Zeng</a><sup>2</sup>,
+   </span>
+   <span class="author-block">
+       <a href="https://www.skicyyu.org/">Gang Yu</a><sup>2&ddagger;</sup>,</span>
+   <span class="author-block">
+       <a href="https://dmne.sjtu.edu.cn/dmne/faculty/chenhaibao/">Hai-Bao Chen</a><sup>1&ddagger;</sup>
+   </span>
+</div>
+<div class="is-size-5 publication-authors" align="center">
+   <span class="author-block"><sup>&dagger;</sup>Project lead,</span>
+   <span class="author-block"><sup>&ddagger;</sup>Correspondence Authors</span>
+</div>
+<div class="is-size-5 publication-authors" align="center">
+   <span class="author-block"><sup>1</sup>Shanghai Jiao Tong University,</span>
+   <span class="author-block"><sup>2</sup>StepFun</span>
+</div>
+</div>
+
+<br> 
+
 <div align="center">
  <a href="https://oneig-bench.github.io/"><img src="https://img.shields.io/static/v1?label=Project%20Page&message=Web&color=green"></a> &ensp;
  <a href="https://huggingface.co/datasets/OneIG-Bench/OneIG-Bench"><img src="https://img.shields.io/static/v1?label=Dataset&message=Huggingface&color=yellow"></a> &ensp;
