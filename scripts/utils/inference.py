@@ -123,7 +123,7 @@ class CSDStyleEmbedding:
 
 
 class SEStyleEmbedding:
-    def __init__(self, pretrained_path: str = "xingpng/style_encoder", device: str = "cuda", dtype=torch.bfloat16):
+    def __init__(self, pretrained_path: str = "xingpng/OneIG-StyleEncoder", device: str = "cuda", dtype=torch.bfloat16):
         self.device = torch.device(device)
         self.dtype = dtype
         self.image_encoder = CLIPVisionModelWithProjection.from_pretrained(pretrained_path)
