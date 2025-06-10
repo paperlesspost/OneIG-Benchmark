@@ -26,7 +26,7 @@ def main():
     df = pd.read_csv(style_csv_path, dtype=str)
     
     CSD_Encoder = CSDStyleEmbedding(model_path="scripts/style/models/checkpoint.pth")
-    SE_Encoder = SEStyleEmbedding(pretrained_path="xingpng/style_encoder")
+    SE_Encoder = SEStyleEmbedding(pretrained_path="xingpng/OneIG-StyleEncoder")
 
     CSD_embed_pt = "scripts/style/CSD_embed.pt"
     CSD_ref = torch.load(CSD_embed_pt, weights_only=False)
