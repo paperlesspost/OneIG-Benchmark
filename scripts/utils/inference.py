@@ -9,7 +9,6 @@ from torchvision import transforms
 from transformers import (AutoModel, AutoProcessor, AutoTokenizer, AutoConfig,
                             CLIPImageProcessor, CLIPVisionModelWithProjection)
 from qwen_vl_utils import process_vision_info
-from scripts.utils.CSD_config import CSD_CLIP, convert_state_dict
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
@@ -108,6 +107,9 @@ class CSDStyleEmbedding:
         ])
 
     def _load_model(self, model_path: str):
+      
+        from scripts.utils.CSD_config import CSD_CLIP, convert_state_dict
+      
         model = CSD_CLIP("vit_large", "default")
         checkpoint = torch.load(model_path, map_location="cpu", weights_only=False)
         state_dict = convert_state_dict(checkpoint['model_state_dict'])
