@@ -11,6 +11,8 @@ from transformers import (AutoModel, AutoProcessor, AutoTokenizer, AutoConfig,
 from qwen_vl_utils import process_vision_info
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+torch.manual_seed(42) 
+torch.cuda.manual_seed_all(42)
 
 class Qwen2_5VLBatchInferencer:
     def __init__(self, model_path: str = "Qwen/Qwen2.5-VL-7B-Instruct", 
