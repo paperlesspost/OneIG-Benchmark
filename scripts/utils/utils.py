@@ -15,10 +15,6 @@ def parse_args():
     parser.add_argument("--class_items", type=str, nargs="+", default=["anime", "human", "object"], help="List of class items.")
     return parser.parse_args()
 
-def average_score_without_nan(scores):
-    valid_scores = [s for s in scores if s is not None]
-    return sum(valid_scores) / len(valid_scores) if valid_scores else 0.0
-
 def is_black_image(image):
     pixels = image.load()  
     for i in range(image.width):
