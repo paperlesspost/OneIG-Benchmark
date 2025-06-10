@@ -4,7 +4,7 @@
 <div align="center">
  <a href="https://oneig-bench.github.io/"><img src="https://img.shields.io/static/v1?label=Project%20Page&message=Web&color=green"></a> &ensp;
  <a href="https://huggingface.co/datasets/OneIG-Bench/OneIG-Bench"><img src="https://img.shields.io/static/v1?label=Dataset&message=Huggingface&color=yellow"></a> &ensp;
-  <a href="https://arxiv.org/abs/xxxx.xxxxx"><img src="https://img.shields.io/static/v1?label=Tech%20Report&message=Arxiv&color=red"></a> &ensp;
+  <a href="https://arxiv.org/abs/2506.07977"><img src="https://img.shields.io/static/v1?label=Tech%20Report&message=Arxiv&color=red"></a> &ensp;
 </div>
 
 <br>  
@@ -16,7 +16,7 @@
 ## 🔥🔥🔥 News
 
 * **`2025.06.10`** 🌟 We released the [**OneIG-Bench**](https://huggingface.co/datasets/OneIG-Bench/OneIG-Bench) benchmark on 🤗huggingface.
-* **`2025.06.10`** 🌟 We released the [tech report](https://arxiv.org/abs/xxxx.xxxxx) and the [project page](https://oneig-bench.github.io/)
+* **`2025.06.10`** 🌟 We released the [tech report](https://arxiv.org/abs/2506.07977) and the [project page](https://oneig-bench.github.io/)
 * **`2025.06.10`** 🌟 We released the evaluation scripts. 
 
 ## To Do List
@@ -142,7 +142,7 @@ If you find our work helpful for your research, please consider citing our work.
 @article{chang2025oneig,
   title={OneIG-Bench: Omni-dimensional Nuanced Evaluation for Image Generation}, 
   author={Jingjing Chang and Yixiao Fang and Peng Xing and Shuhan Wu and Wei Cheng and Rui Wang and Xianfang Zeng and Gang Yu and Hai-Bao Chen},
-  journal={arXiv preprint arxiv:xxxx.xxxxx},
+  journal={arXiv preprint arxiv:2506.07977},
   year={2025}
 }
 ```
