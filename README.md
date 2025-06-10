@@ -87,7 +87,9 @@ Install requirements:
 pip install -r requirements.txt
 ```
 
-The version of flash-attention is in the last line of [`requirements.txt`](requirements.txt). Download the [OneIG-StyleEncoder](https://huggingface.co/xingpng/OneIG-StyleEncoder), put the [CSD model](https://drive.google.com/file/d/1FX0xs8p-C7Ob-h5Y4cUhTeOepHzXv_46/view?usp=sharing) and [CLIP model](https://openaipublic.azureedge.net/clip/models/b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836/ViT-L-14.pt) under `./scripts/style/models`.
+The version of flash-attention is in the last line of [`requirements.txt`](requirements.txt).
+
+To evaluate style performance, please download the [CSD model](https://drive.google.com/file/d/1FX0xs8p-C7Ob-h5Y4cUhTeOepHzXv_46/view?usp=sharing) and [CLIP model](https://openaipublic.azureedge.net/clip/models/b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836/ViT-L-14.pt), then put them under `./scripts/style/models`.
 
 
 ### Image Generation
