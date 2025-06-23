@@ -57,6 +57,7 @@
 
 ## 🔥🔥🔥 News
 
+* **`2025.06.23`** 🌟 We updated the **T2I generation script**  [`here`](text2image.py).
 * **`2025.06.10`** 🌟 We released the [**OneIG-Bench**](https://huggingface.co/datasets/OneIG-Bench/OneIG-Bench) benchmark on 🤗huggingface.
 * **`2025.06.10`** 🌟 We released the [tech report](https://arxiv.org/abs/2506.07977) and the [project page](https://oneig-bench.github.io/).
 * **`2025.06.10`** 🌟 We released the evaluation scripts. 
@@ -93,7 +94,10 @@ To evaluate style performance, please download the [CSD model](https://drive.goo
 
 
 ### Image Generation
-It's better for you to generate 4 images for each prompt in OneIG-Bench. And combine these 4 images into a single image. Each prompt's generated images should be saved into subfolders based on their category **Anime & Stylization, Portrait, General Object, Text Rendering, Knowleddge & Reasoning, Multilingualism**, corresponding to folders **anime, human, object, text, reasoning, multilingualism**. If any image cannot be generated, I suggest saving a black image with the specified filename.
+
+**You can use the [`scirpt`](text2image.py) to generate images.** You only need to set up the inference function in the script for generating images. 
+
+It's better for you to generate 4 images for each prompt in OneIG-Bench. Each prompt's generated images should be saved into subfolders based on their category **Anime & Stylization, Portrait, General Object, Text Rendering, Knowleddge & Reasoning, Multilingualism**, corresponding to folders **anime, human, object, text, reasoning, multilingualism**. If any image cannot be generated, the script will save a black image with the specified filename. 
 
 The filename for each image should follow the id assigned to that prompt in [`OneIG-Bench.csv`](OneIG-Bench.csv)/[`OneIG-Bench-ZH.csv`](OneIG-Bench-ZH.csv). The structure of the images to be saved should look like:
 
