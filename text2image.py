@@ -35,11 +35,11 @@ class_item = {
 image_dir = "images"
 model_name = "xxx"
 
-# you can choose the language mode here
+# you can choose the language mode here.
 df = pd.read_csv("OneIG-Bench.csv", dtype=str)
 # df = pd.read_csv("OneIG-Bench-ZH.csv", dtype=str)
 
-# you can change the grid here
+# you can change the grid here.
 grid = (2, 2)
 
 for idx, row in df.iterrows():
@@ -53,17 +53,17 @@ for idx, row in df.iterrows():
     from inference import inference
     for cnt in range(grid[0] * grid[1]):
         image = inference(prompt)
-        # image is suggested to save as PIL format
+        # image is suggested to save as PIL format.
         images.append(image)
     
     # If the number of generated images is insufficient, fill the remaining slots with black images.
     total_slots = grid[0] * grid[1]
     if len(images) == 0:
-        # If there are no images at all, fill with black images of size 1024x1024
+        # If there are no images at all, fill with black images of size 1024x1024.
         black_img = Image.new("RGB", (1024, 1024), color=(0, 0, 0))
         images.extend([black_img] * total_slots)
     elif len(images) < total_slots:
-        # If there are some images but not enough, fill with black images using the size of the first image
+        # If there are some images but not enough, fill with black images using the size of the first image.
         img_w, img_h = images[0].size
         black_img = Image.new("RGB", (img_w, img_h), color=(0, 0, 0))
         images.extend([black_img] * (total_slots - len(images)))
