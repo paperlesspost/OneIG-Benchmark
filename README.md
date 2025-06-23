@@ -51,16 +51,17 @@
 
 <br>  
 
-<p align="center">
-    <img src="./assets/OneIG-Bench.png" width="92%">
-</p>
-
 ## 🔥🔥🔥 News
 
 * **`2025.06.23`** 🌟 We updated the **T2I generation script**  [`here`](text2image.py).
 * **`2025.06.10`** 🌟 We released the [**OneIG-Bench**](https://huggingface.co/datasets/OneIG-Bench/OneIG-Bench) benchmark on 🤗huggingface.
 * **`2025.06.10`** 🌟 We released the [tech report](https://arxiv.org/abs/2506.07977) and the [project page](https://oneig-bench.github.io/).
 * **`2025.06.10`** 🌟 We released the evaluation scripts. 
+
+<p align="center">
+    <img src="./assets/OneIG-Bench.png" width="92%">
+</p>
+
 
 ## To Do List
 - [ ] Real-time Updating Leaderboard
