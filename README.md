@@ -65,7 +65,8 @@
 
 
 ## To Do List
-- [ ] Real-time Updating Leaderboard
+- [ ] Fine-grained Analysis Script
+- [x] Real-time Updating Leaderboard
 - [x] OneIG-Bench Release 
 - [x] Evaluation Scripts, Technical Report & Project Page Release
 
