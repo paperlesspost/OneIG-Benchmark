@@ -52,6 +52,7 @@
 <br>  
 
 ## 🔥🔥🔥 News
+* **`2025.08.13`** 🌟 We updated the the [Qwen-Image](https://github.com/QwenLM/Qwen-Image) official evaluation results on our leaderboard [here](https://oneig-bench.github.io).
 * **`2025.07.23`** 🌟 We updated the Step-3o Vision evaulation results on our leaderboard [here](https://oneig-bench.github.io).
 * **`2025.07.03`** 🌟 We updated the [Ovis-U1](https://github.com/AIDC-AI/Ovis-U1) evaulation results on our leaderboard [here](https://oneig-bench.github.io).
 * **`2025.06.25`** 🌟 We updated the [Show-o2](https://github.com/showlab/Show-o/tree/main/show-o2) and [OmniGen2](https://github.com/VectorSpaceLab/OmniGen2) evaulation results on our leaderboard [here](https://oneig-bench.github.io).
