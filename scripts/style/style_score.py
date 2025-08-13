@@ -64,7 +64,12 @@ def main():
             if (image_style[:3] == "nan"):
                 continue
             else:
-                image_style = image_style.lower().replace(' ', '_')
+                # normalize label to match embedding keys
+                image_style = image_style.strip().lower().replace(' ', '_')
+                if image_style not in style_list:
+                    # skip unknown styles
+                    print(f"Unknown style '{image_style}' for id {id}; skipping")
+                    continue
             
             split_img_list = split_2x2_grid(img_path, img_grid, cache_dir)
 
@@ -76,9 +81,13 @@ def main():
                 
                 CSD_embed = CSD_Encoder.get_style_embedding(split_img_path)
                 SE_embed = SE_Encoder.get_style_embedding(split_img_path)
-                
-                CSD_max_style_score = max(torch.max(CSD_embed @ CSD_ref_embeds.T).item(), 0)
-                SE_max_style_score = max(torch.max(SE_embed @ SE_ref_embeds.T).item(), 0)
+
+                # Ensure reference embeddings are on the same device and dtype
+                CSD_ref_aligned = CSD_ref_embeds.to(device=CSD_embed.device, dtype=CSD_embed.dtype)
+                SE_ref_aligned = SE_ref_embeds.to(device=SE_embed.device, dtype=SE_embed.dtype)
+
+                CSD_max_style_score = max(torch.max(CSD_embed @ CSD_ref_aligned.T).item(), 0)
+                SE_max_style_score = max(torch.max(SE_embed @ SE_ref_aligned.T).item(), 0)
                 
                 max_style_score = (CSD_max_style_score + SE_max_style_score) / 2
                 score.append(max_style_score)
