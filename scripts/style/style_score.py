@@ -15,7 +15,7 @@ import datetime
 current_time = datetime.datetime.now()
 formatted_time = current_time.strftime("%Y-%m-%d_%H-%M-%S")
 
-style_list = ['abstract_expressionism', 'art_nouveau', 'baroque', 'chinese_ink_painting', 'cubism', 'fauvism', 'impressionism', 'line_art', 'minimalism', 'pointillism', 'pop_art', 'rococo',  'ukiyo-e', 'clay', 'crayon',  'graffiti','lego', 'comic', 'pencil_sketch', 'stone_sculpture', 'watercolor', 'celluloid', 'chibi',   'cyberpunk',  'ghibli',  'impasto', 'pixar', 'pixel_art',  '3d_rendering']
+style_list = ['sketch-watercolor', 'sketch-watercolor2', 'watercolor', 'watercolor2', 'loose-linework2', 'loose-linework', 'pen-and-ink', 'pen-and-ink2']
 
 def main():
     args = parse_args()
