@@ -52,6 +52,9 @@
 <br>  
 
 ## 🔥🔥🔥 News
+* **`2025.09.19`** 🌟 OneIG-Bench has been accepted to NeurIPS 2025 DB Track.
+* **`2025.09.19`** 🌟 We updated the Seedream 4.0, Gemini-2.5-Flash-Image(Nano Banana), Step-3o Vision and [HunyuanImage-2.1](https://github.com/Tencent-Hunyuan/HunyuanImage-2.1) evaluation results on our leaderboard [here](https://oneig-bench.github.io).
+* **`2025.09.19`** 🌟 We updated the [NextStep-1](https://github.com/stepfun-ai/NextStep-1), [Lumina-DiMOO](https://github.com/Alpha-VLLM/Lumina-DiMOO) and [IRG](https://github.com/Osilly/Interleaving-Reasoning-Generation) official evaluation results on our leaderboard [here](https://oneig-bench.github.io).
 * **`2025.08.13`** 🌟 We updated the [Qwen-Image](https://github.com/QwenLM/Qwen-Image) official evaluation results on our leaderboard [here](https://oneig-bench.github.io).
 * **`2025.08.13`** 🌟 We updated the **fine-grained analysis script** [here](fine_grained_analysis.py).
 * **`2025.07.23`** 🌟 We updated the Step-3o Vision evaulation results on our leaderboard [here](https://oneig-bench.github.io).
