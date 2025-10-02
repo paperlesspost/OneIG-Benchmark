@@ -68,8 +68,6 @@ python -m scripts.style.style_score \
 
 echo "It's reasoning time."
 
-pip install transformers==4.46.1
-
 python -m scripts.reasoning.reasoning_score \
   --mode "$MODE" \
   --image_dirname "${IMAGE_DIR}/reasoning" \
