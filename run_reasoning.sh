@@ -20,7 +20,7 @@ IMAGE_GRID=(2 2)
 
 echo "It's reasoning time."
 
-pip install transformers==4.46.1
+pip install transformers==4.50.0
 
 python -m scripts.reasoning.reasoning_score \
   --mode "$MODE" \
