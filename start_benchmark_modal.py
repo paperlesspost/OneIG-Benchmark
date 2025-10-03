@@ -77,18 +77,17 @@ def _as_str_list(values: Iterable) -> list[str]:
     return [str(v) for v in values]
 
 
-def _copy_results_to_bench(volume: modal.Volume, repo_results_glob: str, model_names: list[str]) -> None:
+def _copy_results_to_bench(volume: modal.Volume, repo_results_glob: str, model_name: str) -> None:
     import glob
     import shutil
     results = glob.glob(repo_results_glob)
     if not results:
         print("⚠️ No results found for glob:", repo_results_glob)
         return
-    for model_name in model_names:
-        out_dir = f"/benchmarks/{model_name}/scores"
-        os.makedirs(out_dir, exist_ok=True)
-        for src in results:
-            shutil.copy(src, out_dir)
+    out_dir = f"/benchmarks/{model_name}/scores"
+    os.makedirs(out_dir, exist_ok=True)
+    for src in results:
+        shutil.copy(src, out_dir)
     volume.commit()
 
 
@@ -107,7 +106,7 @@ def _copy_results_to_bench(volume: modal.Volume, repo_results_glob: str, model_n
 )
 def run_all(
     mode: str = "EN",
-    model_names: str = "[\"gpt-4o\",\"imagen4\"]",
+    model_name: str = "",
     image_grid: str = "[2,2]",
     image_dir_remote: str | None = None,
 ) -> dict:
@@ -115,6 +114,9 @@ def run_all(
 
     Returns a dict of result glob paths keyed by test name.
     """
+    if not model_name:
+        raise RuntimeError("no model name specified")
+
     if image_dir_remote is None:
         image_dir_remote = str(IMAGES_REMOTE or "")
     if not image_dir_remote:
@@ -122,26 +124,25 @@ def run_all(
 
     # Normalize inputs
     import json as _json
-    mn_list = _json.loads(model_names) if isinstance(model_names, str) else list(model_names)
     ig_list = _json.loads(image_grid) if isinstance(image_grid, str) else list(image_grid)
 
     # Run functions directly on the same GPU
     align_out = run_alignment(
         mode=mode,
         image_dir_remote=image_dir_remote,
-        model_names=mn_list,
+        model_name=model_name,
         image_grid=ig_list,
     )
     div_out = run_diversity(
         mode=mode,
         image_dir_remote=image_dir_remote,
-        model_names=mn_list,
+        model_name=model_name,
         image_grid=ig_list,
     )
     text_out = run_text(
         mode=mode,
         image_dir_remote_text=f"{image_dir_remote}/text",
-        model_names=mn_list,
+        model_name=model_name,
         image_grid=ig_list,
     )
 
@@ -167,18 +168,21 @@ def run_all(
 def run_alignment(
     mode: str = "EN",
     image_dir_remote: str | None = None,
-    model_names: str = "[\"gpt-4o\",\"imagen4\"]",
+    model_name: str = "",
     image_grid: str = "[2,2]",
 ) -> str:
     """Run alignment benchmark for human and object only.
 
     - mode: "EN" or "ZH"
     - image_dir_remote: container path to the images root. Must contain 'human/' and 'object/'.
-    - model_names: list of subfolder names under each class
+    - model_name: subfolder name under each class
     - image_grid: list of N per model (1->1, 2->2x2, etc.)
     """
     import os
     import subprocess
+
+    if not model_name:
+        raise RuntimeError("no model name specified")
 
     if image_dir_remote is None:
         image_dir_remote = str(IMAGES_REMOTE or "")
@@ -191,14 +195,11 @@ def run_alignment(
     # Normalize CLI inputs (accept JSON strings or Python lists)
     try:
         import json as _json
-        model_names_list = (
-            _json.loads(model_names) if isinstance(model_names, str) else list(model_names)
-        )
         image_grid_list = (
             _json.loads(image_grid) if isinstance(image_grid, str) else list(image_grid)
         )
     except Exception as _e:
-        raise RuntimeError(f"Invalid model_names/image_grid: {model_names}, {image_grid}: {_e}")
+        raise RuntimeError(f"Invalid image_grid: {image_grid}: {_e}")
 
     cmd = [
         "python",
@@ -209,7 +210,7 @@ def run_alignment(
         "--image_dirname",
         f"{image_dir_remote}",
         "--model_names",
-        *[str(x) for x in model_names_list],
+        model_name,
         "--image_grid",
         *[str(x) for x in image_grid_list],
         "--class_items",
@@ -221,10 +222,9 @@ def run_alignment(
     print(" ", " ".join(cmd))
     subprocess.run(cmd, check=True, cwd=cwd)
 
-    _copy_results_to_bench(bench_volume, f"{cwd}/results/alignment_score_{mode}_*.csv", model_names_list)
-    for model_name in model_names_list:
-        print(f"📄 Alignment scores saved to: /benchmarks/{model_name}/scores/")
-    return ", ".join([f"/benchmarks/{mn}/scores/alignment_score_{mode}_*.csv" for mn in model_names_list])
+    _copy_results_to_bench(bench_volume, f"{cwd}/results/alignment_score_{mode}_*.csv", model_name)
+    print(f"📄 Alignment scores saved to: /benchmarks/{model_name}/scores/")
+    return f"/benchmarks/{model_name}/scores/alignment_score_{mode}_*.csv"
 
 
 @app.function(
@@ -242,12 +242,15 @@ def run_alignment(
 def run_diversity(
     mode: str = "EN",
     image_dir_remote: str | None = None,
-    model_names: str = "[\"gpt-4o\"]",
+    model_name: str = "",
     image_grid: str = "[2]",
 ) -> str:
     """Run diversity benchmark for human, object, and text only."""
     import os
     import subprocess
+
+    if not model_name:
+        raise RuntimeError("no model name specified")
 
     if image_dir_remote is None:
         image_dir_remote = str(IMAGES_REMOTE or "")
@@ -259,14 +262,11 @@ def run_diversity(
 
     try:
         import json as _json
-        model_names_list = (
-            _json.loads(model_names) if isinstance(model_names, str) else list(model_names)
-        )
         image_grid_list = (
             _json.loads(image_grid) if isinstance(image_grid, str) else list(image_grid)
         )
     except Exception as _e:
-        raise RuntimeError(f"Invalid model_names/image_grid: {model_names}, {image_grid}: {_e}")
+        raise RuntimeError(f"Invalid image_grid: {image_grid}: {_e}")
 
     cmd = [
         "python",
@@ -277,7 +277,7 @@ def run_diversity(
         "--image_dirname",
         f"{image_dir_remote}",
         "--model_names",
-        *[str(x) for x in model_names_list],
+        model_name,
         "--image_grid",
         *[str(x) for x in image_grid_list],
         "--class_items",
@@ -290,10 +290,9 @@ def run_diversity(
     print(" ", " ".join(cmd))
     subprocess.run(cmd, check=True, cwd=cwd)
 
-    _copy_results_to_bench(bench_volume, f"{cwd}/results/diversity_score_{mode}_*.csv", model_names_list)
-    for model_name in model_names_list:
-        print(f"📄 Diversity scores saved to: /benchmarks/{model_name}/scores/")
-    return ", ".join([f"/benchmarks/{mn}/scores/diversity_score_{mode}_*.csv" for mn in model_names_list])
+    _copy_results_to_bench(bench_volume, f"{cwd}/results/diversity_score_{mode}_*.csv", model_name)
+    print(f"📄 Diversity scores saved to: /benchmarks/{model_name}/scores/")
+    return f"/benchmarks/{model_name}/scores/diversity_score_{mode}_*.csv"
 
 
 @app.function(
@@ -311,14 +310,14 @@ def run_diversity(
 def run_text(
     mode: str = "EN",
     image_dir_remote_text: str | None = None,
-    model_names: str = "",
+    model_name: str = "",
     image_grid: str = "[2,2]",
 ) -> str:
     """Run text benchmark (expects images under <image_dir_remote_text>/<model_name>/id.webp)."""
     import os
     import subprocess
 
-    if model_names is None or model_names == "":
+    if not model_name:
         raise RuntimeError("no model name specified")
 
     if image_dir_remote_text is None:
@@ -335,14 +334,11 @@ def run_text(
 
     try:
         import json as _json
-        model_names_list = (
-            _json.loads(model_names) if isinstance(model_names, str) else list(model_names)
-        )
         image_grid_list = (
             _json.loads(image_grid) if isinstance(image_grid, str) else list(image_grid)
         )
     except Exception as _e:
-        raise RuntimeError(f"Invalid model_names/image_grid: {model_names}, {image_grid}: {_e}")
+        raise RuntimeError(f"Invalid image_grid: {image_grid}: {_e}")
 
     cmd = [
         "python",
@@ -353,7 +349,7 @@ def run_text(
         "--image_dirname",
         f"{image_dir_remote_text}",
         "--model_names",
-        *[str(x) for x in model_names_list],
+        model_name,
         "--image_grid",
         *[str(x) for x in image_grid_list],
     ]
@@ -362,7 +358,6 @@ def run_text(
     print(" ", " ".join(cmd))
     subprocess.run(cmd, check=True, cwd=cwd)
 
-    _copy_results_to_bench(bench_volume, f"{cwd}/results/text_score_{mode}_*.csv", model_names_list)
-    for model_name in model_names_list:
-        print(f"📄 Text scores saved to: /benchmarks/{model_name}/scores/")
-    return ", ".join([f"/benchmarks/{mn}/scores/text_score_{mode}_*.csv" for mn in model_names_list])
+    _copy_results_to_bench(bench_volume, f"{cwd}/results/text_score_{mode}_*.csv", model_name)
+    print(f"📄 Text scores saved to: /benchmarks/{model_name}/scores/")
+    return f"/benchmarks/{model_name}/scores/text_score_{mode}_*.csv"
