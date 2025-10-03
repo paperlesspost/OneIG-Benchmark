@@ -127,19 +127,19 @@ def run_all(
     ig_list = _json.loads(image_grid) if isinstance(image_grid, str) else list(image_grid)
 
     # Run functions directly on the same GPU
-    align_out = run_alignment(
+    align_out = run_alignment.local(
         mode=mode,
         image_dir_remote=image_dir_remote,
         model_name=model_name,
         image_grid=ig_list,
     )
-    div_out = run_diversity(
+    div_out = run_diversity.local(
         mode=mode,
         image_dir_remote=image_dir_remote,
         model_name=model_name,
         image_grid=ig_list,
     )
-    text_out = run_text(
+    text_out = run_text.local(
         mode=mode,
         image_dir_remote_text=f"{image_dir_remote}/text",
         model_name=model_name,
@@ -170,6 +170,7 @@ def run_alignment(
     image_dir_remote: str | None = None,
     model_name: str = "",
     image_grid: str = "[2,2]",
+    class_items: list[str] | None = ["human", "object"],
 ) -> str:
     """Run alignment benchmark for human and object only.
 
@@ -177,6 +178,7 @@ def run_alignment(
     - image_dir_remote: container path to the images root. Must contain 'human/' and 'object/'.
     - model_name: subfolder name under each class
     - image_grid: list of N per model (1->1, 2->2x2, etc.)
+    - class_items: list of class items to benchmark (default: ["human", "object"])
     """
     import os
     import subprocess
@@ -214,8 +216,7 @@ def run_alignment(
         "--image_grid",
         *[str(x) for x in image_grid_list],
         "--class_items",
-        "human",
-        "object",
+        *class_items,
     ]
 
     print("🚀 Running:")
@@ -244,8 +245,12 @@ def run_diversity(
     image_dir_remote: str | None = None,
     model_name: str = "",
     image_grid: str = "[2]",
+    class_items: list[str] | None = ["human", "object", "text"],
 ) -> str:
-    """Run diversity benchmark for human, object, and text only."""
+    """Run diversity benchmark for human, object, and text only.
+    
+    - class_items: list of class items to benchmark (default: ["human", "object", "text"])
+    """
     import os
     import subprocess
 
@@ -281,9 +286,7 @@ def run_diversity(
         "--image_grid",
         *[str(x) for x in image_grid_list],
         "--class_items",
-        "human",
-        "object",
-        "text",
+        *class_items,
     ]
 
     print("🚀 Running:")
