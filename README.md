@@ -1,4 +1,16 @@
 # OneIG-Bench
+
+
+## Fork changes
+This fork is created to run the benchmarks on Modal.com. 
+We are focused in benchmarking LoRA models created for specific styles. so we have decided to only run the alignment, diversity, and text benchmarks.
+- Alignment: Only run the alignment benchmark for human and object.
+- Diversity: Only run the diversity benchmark for human, object, and text.
+
+Anime_Stylization and Knowledge_Reasoning are not relevant to our use case. 
+Perhaps you can use the modal app to run these 2 categories. Just call the 
+alignment or diversity with the appropriate --class_items argument.
+
 ## OneIG-Bench: Omni-dimensional Nuanced Evaluation for Image Generation
 
 <div class="is-size-4 publication-authors" align="center">
