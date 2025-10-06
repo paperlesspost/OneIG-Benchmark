@@ -109,7 +109,7 @@ def run_all(
     model_name: str = "",
     image_grid: str = "[2,2]",
     image_dir_remote: str | None = None,
-) -> dict:
+) -> dict[str, str]:
     """Run alignment, diversity, and text with one shared config.
 
     Returns a dict of result glob paths keyed by test name.
@@ -164,6 +164,7 @@ def run_all(
         "/oneig/models": models_volume,
     },
     max_containers=5,
+    scaledown_window= 15,
 )
 def run_alignment(
     mode: str = "EN",
